@@ -2,6 +2,7 @@ title: David Letscher
 email: david.letscher@slu.edu
 description: >-
   Thoughts on CS pedagogy and AI use in CS education.
+theme: minima
 baseurl: ""
 url: "https://davidletscher.github.io"
 author: David Letscher
