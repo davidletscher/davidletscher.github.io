@@ -1,0 +1,48 @@
+---
+layout: default
+---
+<section class="hero">
+  <h1>{{ site.title }}</h1>
+  <p class="lede">{{ site.description }}</p>
+</section>
+
+{% assign latest_post = site.posts.first %}
+
+{{ content }}
+
+<section class="home-layout">
+  {% if latest_post %}
+    <article class="post featured-post">
+      <header class="post-header">
+        <p class="eyebrow">Most Recent Post</p>
+        <p class="post-date">{{ latest_post.date | date: "%B %-d, %Y" }}</p>
+        <h2><a href="{{ latest_post.url | relative_url }}">{{ latest_post.title }}</a></h2>
+      </header>
+      <div class="post-content">
+        {{ latest_post.content }}
+      </div>
+    </article>
+  {% else %}
+    <section class="post featured-post">
+      <h2>No posts yet</h2>
+      <p>Add one in <code>_posts/</code> to feature it on the homepage.</p>
+    </section>
+  {% endif %}
+
+  <aside class="post-list side-panel" aria-label="Recent posts">
+    <h2>Recent posts</h2>
+    {% if site.posts.size > 0 %}
+      <ul>
+        {% for post in site.posts limit: 8 %}
+          <li>
+            <a href="{{ post.url | relative_url }}">{{ post.title }}</a>
+            <span>{{ post.date | date: "%b %-d, %Y" }}</span>
+          </li>
+        {% endfor %}
+      </ul>
+      <p class="all-posts-link"><a href="{{ '/posts/' | relative_url }}">View all posts</a></p>
+    {% else %}
+      <p>No posts yet.</p>
+    {% endif %}
+  </aside>
+</section>
